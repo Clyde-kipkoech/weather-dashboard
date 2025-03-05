@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styles from "./Weather.module.css";
 
 const WeatherApp = () => {
   const [city, setCity] = useState("");
@@ -27,8 +28,9 @@ const WeatherApp = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2>Weather Dashboard 🌦️</h2>
+    <div className={styles.container}>
+    <div className={styles.card}>
+      <h2>🌦️ Weather Dashboard</h2>
       <input
         type="text"
         placeholder="Enter city name..."
@@ -41,13 +43,15 @@ const WeatherApp = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {weather && (
-        <div>
+        <div className={styles.weatherInfo}>
           <h3>{weather.name}, {weather.sys.country}</h3>
           <p>{weather.weather[0].description}</p>
-          <p>🌡️ {weather.main.temp}°C</p>
+          <p className={styles.temp}>🌡️ {weather.main.temp}°C</p>
         </div>
       )}
-    </div>
+   </div>
+  </div>
+
   );
 };
 
